@@ -18,6 +18,9 @@
 /* System font directory */
 #define FC_DEFAULT_FONTS "WINDOWSFONTDIR"
 
+/* The type of len parameter of the gperf hash/lookup function */
+#define FC_GPERF_SIZE_T @FC_GPERF_SIZE_T@
+
 /* temporary cachedir */
 #define FC_CACHEDIR ${FC_CACHEDIR}
 

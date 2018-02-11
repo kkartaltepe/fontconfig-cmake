@@ -2,11 +2,12 @@
 
 include( CheckIncludeFile )
 include( CheckFunctionExists )
+include( CheckStructHasMember )
 include( CheckTypeSize)
 
 if(WIN32)
     if(MSVC)
-        set( CMAKE_REQUIRED_INCLUDES ${CMAKE_INCLUDE_PATH} ${CMAKE_INCLUDE_PATH}/msvc )
+        set( CMAKE_REQUIRED_INCLUDES ${CMAKE_INCLUDE_PATH} ${CMAKE_INCLUDE_PATH}/win32_compat )
     else(MSVC)
         set( CMAKE_REQUIRED_INCLUDES ${CMAKE_INCLUDE_PATH} ${CMAKE_INCLUDE_PATH}/mingw )
     endif(MSVC)
@@ -94,12 +95,21 @@ check_function_exists( sysconf HAVE_SYSCONF )
 check_function_exists( vprintf HAVE_VPRINTF )
 check_function_exists( XML_SetDoctypeDeclHandler HAVE_XML_SETDOCTYPEDECLHANDLER )
 
+
+check_struct_has_member(dirent d_type "dirent.h" HAVE_STRUCT_DIRENT_D_TYPE)
+check_struct_has_member(statfs f_flags "sys/statfs.h;sys/vfs.h;sys/param.h;sys/mount.h" HAVE_STRUCT_STATFS_F_FLAGS)
+check_struct_has_member(statfs f_fstypename "sys/statfs.h;sys/vfs.h;sys/param.h;sys/mount.h" HAVE_STRUCT_STATFS_F_FSTYPENAME)
+check_struct_has_member(statvfs f_basetype "sys/statvfs.h" HAVE_STRUCT_STATFS_F_FSTYPENAME)
+check_struct_has_member(statvfs f_fstypename "sys/statvfs.h" HAVE_STRUCT_STATVFS_F_FSTYPENAME)
+
 CHECK_TYPE_SIZE("char"   SIZEOF_CHAR BUILTIN_TYPES_ONLY)
 CHECK_TYPE_SIZE("int"    SIZEOF_INT BUILTIN_TYPES_ONLY)
 CHECK_TYPE_SIZE("long"   SIZEOF_LONG BUILTIN_TYPES_ONLY)
 CHECK_TYPE_SIZE("short"  SIZEOF_SHORT BUILTIN_TYPES_ONLY)
 CHECK_TYPE_SIZE("void*"  SIZEOF_VOIDP BUILTIN_TYPES_ONLY)
 CHECK_TYPE_SIZE("void *" SIZEOF_VOID_P BUILTIN_TYPES_ONLY)
+set(FC_GPERF_SIZE_T "size_t") # Should test like configure.ac that size_t is recognized (but should work for msvc and gcc)
+
 
 add_definitions( -DHAVE_CONFIG_H)
 add_definitions( -DFONTCONFIG_PATH="\\"${CMAKE_INSTALL_PREFIX}/etc/fonts\\"" )
