@@ -15,7 +15,7 @@ include_directories(
 )
 
 if( MSVC )
-    include_directories( win32_compat )
+    include_directories( win_compat )
     add_definitions( -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -wd4018)
 endif(MSVC)
 link_directories( ${CMAKE_LIBRARY_PATH} )
