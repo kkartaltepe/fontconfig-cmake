@@ -18,7 +18,7 @@ add_custom_command(OUTPUT fcftalias.h fcftaliastail.h
 set( fontconfig_SRCS
     fcarch.c
     fcatomic.c
-    fcblanks.c
+    # fcblanks.c
     fccache.c
     fccfg.c
     fccharset.c
@@ -44,6 +44,8 @@ set( fontconfig_SRCS
     fcweight
     fcxml.c
     ftglue.c
+    fcptrlist.c
+    fchash.c
     # generated
     fcaliastail.h
     fcalias.h

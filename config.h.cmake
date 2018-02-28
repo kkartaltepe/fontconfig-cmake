@@ -16,13 +16,13 @@
 #cmakedefine FC_ARCHITECTURE @FC_ARCHITECTURE@
 
 /* System font directory */
-#define FC_DEFAULT_FONTS "WINDOWSFONTDIR"
+#define FC_DEFAULT_FONTS @FC_DEFAULT_FONTS@
 
 /* The type of len parameter of the gperf hash/lookup function */
 #define FC_GPERF_SIZE_T @FC_GPERF_SIZE_T@
 
 /* temporary cachedir */
-#define FC_CACHEDIR ${FC_CACHEDIR}
+#define FC_CACHEDIR @FC_CACHEDIR@
 
 /* Define to nothing if C supports flexible array members, and to 1 if it does
    not. That way, with a declaration like `struct s { int n; double
@@ -305,25 +305,19 @@
 #cmakedefine USE_REGEX @USE_REGEX@
 
 /* Enable extensions on AIX 3, Interix.  */
-#ifndef _ALL_SOURCE
-# define _ALL_SOURCE
-#endif
+#cmakedefine _ALL_SOURCE
+
 /* Enable GNU extensions on systems that have them.  */
-#ifndef _GNU_SOURCE
-# define _GNU_SOURCE 1
-#endif
+#cmakedefine _GNU_SOURCE
+
 /* Enable threading extensions on Solaris.  */
-#ifndef _POSIX_PTHREAD_SEMANTICS
-# define _POSIX_PTHREAD_SEMANTICS @_POSIX_PTHREAD_SEMANTICS@
-#endif
+#define _POSIX_PTHREAD_SEMANTICS @_POSIX_PTHREAD_SEMANTICS@
+
 /* Enable extensions on HP NonStop.  */
-#ifndef _TANDEM_SOURCE
-# define _TANDEM_SOURCE
-#endif
+#cmakedefine _TANDEM_SOURCE
+
 /* Enable general extensions on Solaris.  */
-#ifndef __EXTENSIONS__
-# define __EXTENSIONS__ @__EXTENSIONS__@
-#endif
+#define __EXTENSIONS__ @__EXTENSIONS__@
 
 /* Version number of package */
 #cmakedefine VERSION
